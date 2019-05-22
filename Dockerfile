@@ -1,8 +1,9 @@
 FROM ubuntu:18.04
 WORKDIR /usr/share/nRF5-SDK
 RUN apt-get update && \
-	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 xvfb curl wget unzip python-pip git zip bash-completion && \
-	pip install nrfutil
+	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 xvfb curl wget unzip python-pip git zip bash-completion ruby-full && \
+	pip install nrfutil && \
+	gem install ceedling
 
 RUN Xvfb :1 -screen 0 1024x768x16 &
 
