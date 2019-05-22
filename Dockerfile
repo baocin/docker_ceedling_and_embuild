@@ -28,4 +28,6 @@ ENV SDK_ROOT="/usr/share/nRF5-SDK/nRF5_SDK_15.2.0_9412b96"
 
 RUN curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker.sh
 
+RUN chmod 777 /usr/share/nRF5-SDK/nRF5_SDK_15.2.0_9412b96
+
 CMD ["/ses/bin/emBuild"]
