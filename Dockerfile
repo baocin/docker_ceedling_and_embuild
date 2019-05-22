@@ -1,9 +1,15 @@
 FROM ubuntu:18.04
 WORKDIR /usr/share/nRF5-SDK
 RUN apt-get update && \
-	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 xvfb curl wget unzip python-pip git zip bash-completion ruby-full && \
+	apt-get install -y openssl libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 xvfb curl wget unzip python-pip git zip bash-completion ruby-full && \
 	pip install nrfutil && \
 	gem install ceedling
+	
+# install RVM, Ruby, and Bundler
+RUN \curl -L https://get.rvm.io | bash -s stable
+RUN /bin/bash -l -c "rvm requirements"
+RUN /bin/bash -l -c "rvm install 2.0"
+RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
 
 RUN Xvfb :1 -screen 0 1024x768x16 &
 
@@ -27,7 +33,4 @@ RUN wget -qO nRF5-SDK.zip https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v15
 ENV SDK_ROOT="/usr/share/nRF5-SDK/nRF5_SDK_15.2.0_9412b96"
 
 RUN curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker.sh
-
-RUN chmod 777 /usr/share/nRF5-SDK/nRF5_SDK_15.2.0_9412b96
-
 CMD ["/ses/bin/emBuild"]
