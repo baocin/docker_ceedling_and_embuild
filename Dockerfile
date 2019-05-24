@@ -1,7 +1,8 @@
 FROM ubuntu:18.04
 WORKDIR /usr/share/nRF5-SDK
 RUN apt-get update && \
-	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 xvfb curl wget unzip gcc ruby-full && \
+	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 python-pip xvfb curl wget unzip gcc ruby-full && \
+	pip install gcovr && \
 	gem install rake ceedling
 
 RUN wget https://www.segger.com/downloads/embedded-studio/Setup_EmbeddedStudio_ARM_v416_linux_x64.tar.gz -qO ses.tar.gz && \
