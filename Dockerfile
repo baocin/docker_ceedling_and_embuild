@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 ARG SES_DL
 ARG SDK_DL
 RUN apt-get update && \
-	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 python-pip xvfb curl wget unzip gcc ruby-full && \
+	apt-get install -y libx11-6 libfreetype6 libxrender1 libfontconfig1 libxext6 python-pip xvfb curl wget unzip gcc ruby-full libc6-dev-i386 libc6-dev-i386-amd64-cross && \
 	pip install gcovr nrfutil && \
 	gem install rake ceedling
 
