@@ -19,9 +19,11 @@ RUN wget -qO nRF5-SDK.zip $SDK_DL && \
     rm nRF5-SDK.zip && \
 	mv $(find ./ -name nRF5_* -type d -print -quit) /sdk
 
-RUN curl https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF5-command-line-tools/sw/nRF-Command-Line-Tools_9_8_1_Linux-x86_64.tar -o nrftools.tar && \
-	tar -xvf nrftools.tar && \
-	rm nrftools.tar
+RUN curl https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-command-line-tools/sw/Versions-10-x-x/nRFCommandLineTools1021Linuxamd64tar.gz -o nrftools.tar.gz && \
+	tar -xvzf nrftools.tar.gz ./nRF-Command-Line-Tools_10_2_1_Linux-amd64.tar.gz && \
+	rm nrftools.tar.gz && \
+	tar -xvzf nRF-Command-Line-Tools_10_2_1_Linux-amd64.tar.gz ./mergehex && \
+	rm nRF-Command-Line-Tools_10_2_1_Linux-amd64.tar.gz
 ENV PATH="/mergehex:/nrfjprog:$PATH"
 
 CMD ["/ses/bin/emBuild"]
