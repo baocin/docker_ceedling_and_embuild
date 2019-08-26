@@ -26,4 +26,4 @@ RUN curl https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop
 	rm nRF-Command-Line-Tools_10_2_1_Linux-amd64.tar.gz
 ENV PATH="/mergehex:/nrfjprog:$PATH"
 
-CMD ["/ses/bin/emBuild"]
+#CMD ["/ses/bin/emBuild"]
